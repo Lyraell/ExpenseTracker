@@ -7,7 +7,9 @@
         x:Class="ExpenseTracker.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ExpenseTracker">
+        Title="ExpenseTracker"
+		Width="600"
+		Height="400">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +17,45 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="120"/>
+			<!-- Sidebar -->
+			<ColumnDefinition Width="*"/>
+			<!-- Main content -->
+		</Grid.ColumnDefinitions>
 
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"/>
+			<!-- Header -->
+			<RowDefinition Height="*"/>
+			<!-- Content -->
+			<RowDefinition Height="50"/>
+			<!-- Footer -->
+		</Grid.RowDefinitions>
+
+		<!-- Header -->
+		<TextBlock Text="Expense Tracker" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20"/>
+
+		<!-- Sidebar -->
+		<StackPanel Grid.Row="1" Grid.Column="0" Background="LightGoldenrodYellow">
+			<Button Content="Home" />
+			<Button Content="Add Expense" Command="{Binding ShowAddExpenseCommand}" Margin="10"/>
+			<Button Content="View Expenses" Command="{Binding ShowExpenseListCommand}" Margin="10"/>/>
+			<Button Content="Reports" />
+			<Button Content="Settings" />
+		</StackPanel>
+
+		<!-- Main Content -->
+		<Border Grid.Row="1" Grid.Column="1" Background="LightGray">
+			<TextBlock Text="Main Content Area" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+		</Border>
+
+		<!-- Footer -->
+		<TextBlock Text="© 2025 Expense Tracker" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+	</Grid>
+
+   
+	
+	
 </Window>
